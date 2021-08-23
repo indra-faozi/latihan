@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="jquery.qrcode.min.js"></script>
+
+
+
+
+<script>
+    $(document).ready(function(){
+       $("table tbody tr").on('click', function(){
+           if ($(this).hasClass('bg-primary')) {
+               $(this).removeClass('bg-primary text-white')
+               return false
+           }
+           $('table tbody tr').removeClass('bg-primary text-white')
+           $(this).addClass('bg-primary text-white')
+
+       })
+
+
+       $('#simpan_post').on('submit', function(e){
+           e.preventDefault()
+           let table = $('table tbody tr')
+           let arr = table.toArray()
+
+
+              $('#spinner').addClass('spinner-border')
+              let npm = $('#npm').val()
+              let nama = $('#nama').val()
+              let jurusan = $('#jurusan').val()
+           
+              setTimeout(() => {
+                  $('#spinner').removeClass('spinner-border')
+                  for (let i = 0; i < arr.length; i++) {
+
+                      let result = table.toArray()[i].childNodes[1].innerHTML
+                      let npm = $('#npm').val()
+
+                      if (result === npm) {
+                            alert('NPM sudah digunakan')
+                            return false
+                      }
+                    }
+                    $('table tbody').append(`
+                    <tr>
+                        <td>${npm}</td>    
+                        <td>${nama}</td>    
+                        <td>${jurusan}</td>    
+                    </tr>
+                    `)
+                   }, 1000);
+                
+       })
+    })
+
+</script>
+<style>
+    
+</style>
+<body>
+    <div class="container mt-5">
+        <form id="simpan_post" method="post">
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="npm" required>
+                <label for="floatingInput">NPM</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nama" required>
+                <label for="floatingInput">Nama</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="jurusan" required>
+                <label for="floatingInput">Jurusan</label>
+            </div>
+            <div class="form-floating">
+                <button class="btn btn-primary"><div id="spinner" class=""></div>Simpan</button>
+            </div>
+        </form>
+    </div>
+    <div class="container mt-5">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>NPM</td>
+                        <td>Nama</td>
+                        <td>Jurusan</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
