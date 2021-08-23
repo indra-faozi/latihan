@@ -1,1 +1,1 @@
-# latihan
+Repo latihan ini berisi file latihan yang berasal dari studi kasus yang saya buat sendiri
