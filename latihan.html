@@ -41,6 +41,10 @@
                alert('Masukkan NPM yang valid')
                return false
             }
+
+
+            $('button').attr('disabled', '')
+
             $('#spinner').addClass('spinner-border')
               let nama = $('#nama').val()
               let jurusan = $('#jurusan').val()
@@ -54,6 +58,7 @@
 
                       if (result === npm) {
                             alert('NPM sudah digunakan')
+                            $('button').removeAttr('disabled')
                             return false
                       }
                     }
@@ -64,6 +69,7 @@
                         <td>${jurusan}</td>    
                     </tr>
                     `)
+                    $('button').removeAttr('disabled')
                    }, 1000);
                 
        })
